@@ -1,7 +1,8 @@
+const { Request, Response } = require('express');
 const Post = require('../model/Post');
 
 module.exports = {
-  async store(req, res) {
+  async store(req: Request, res: Response) {
     const post = await Post.findById(req.params.id);
     post.likes += 1;
     await post.save();

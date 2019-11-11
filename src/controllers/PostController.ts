@@ -1,10 +1,11 @@
+const { Request, Response } = require('express');
 const Post = require('../model/Post');
 const sharp = require('sharp');
 const path = require('path');
 const fs = require('fs');
 
  module.exports = {
-  async index(req, res) {
+  async index(req: Request, res: Response) {
     const posts = await Post.find().sort('-createdAt');
 
     return res.json(posts);
