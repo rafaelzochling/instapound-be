@@ -1,4 +1,13 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose, { Schema, Document } from 'mongoose';
+
+export interface IPost extends Document {
+  author: string;
+  place: string;
+  description: string;
+  hashtags: string;
+  image: string;
+  likes: number;
+  }
 
 const PostSchema: Schema = new mongoose.Schema({
   author: String,
@@ -15,4 +24,4 @@ const PostSchema: Schema = new mongoose.Schema({
   timestamps: true
 });
 
-export default mongoose.model('Post', PostSchema);
+export default mongoose.model<IPost>('Post', PostSchema);
