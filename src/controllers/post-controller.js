@@ -6,7 +6,7 @@ const fs = require('fs');
 const getPosts = async (req, res) => {
   const posts = await Post.find().sort('-createdAt');
   
-  return res.json(posts);
+  return res.send(posts);
 };
 
 const createPost = async (req, res) =>  {
@@ -35,7 +35,7 @@ const createPost = async (req, res) =>  {
     
     req.io.emit('post', post);
     
-    return res.json(post);
+    return res.send(post);
   };
   
   module.exports = { getPosts, createPost };

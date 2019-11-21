@@ -7,7 +7,7 @@ const likePost = async (req, res) => {
   
   req.io.emit('like', post);
   
-  return res.json(post);
+  return res.send(post);
 };
 
 module.exports = { likePost };
