@@ -24,4 +24,5 @@ app.use('/files', express.static(path.resolve(__dirname, '..', 'uploads', 'resiz
 
 app.use(require('./routes'));
 
+console.info('Server Running on Port 3333');
 server.listen(3333);
