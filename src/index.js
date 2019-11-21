@@ -1,9 +1,8 @@
-const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const cors = require('cors');
 
-const app = express();
+const app = require('fastify')({ logger: true });
 
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
@@ -12,17 +11,21 @@ mongoose.connect('mongodb+srv://asdf:Asdf4dM1n666@cluster0-htu8t.gcp.mongodb.net
   useNewUrlParser: true, 
 });
 
-app.use((req, res, next) => {
-  req.io = io;
+// app.register((req, res, next) => {
+//   req.io = io;
+// 
+//   next();
+// })
 
-  next();
-})
+//app.register(cors()); 
 
-app.use(cors()); 
+app.register(require('fastify-static'), {
+  root: path.resolve(__dirname, '..', 'uploads', 'resized'),
+  prefix: '/files/'
+});
 
-app.use('/files', express.static(path.resolve(__dirname, '..', 'uploads', 'resized')))
+app.register(require('./routes'));
 
-app.use(require('./routes'));
+app.log.info(`server listening on 3333`);
 
-console.info('Server Running on Port 3333');
-server.listen(3333);
+app.listen(3333);
