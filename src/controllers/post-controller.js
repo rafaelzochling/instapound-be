@@ -33,7 +33,7 @@ const createPost = async (req, res) =>  {
       image: fileName 
     });
     
-    req.io.emit('post', post);
+    // req.io.emit('post', post);
     
     return res.send(post);
   };

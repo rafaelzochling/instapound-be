@@ -4,8 +4,8 @@ const cors = require('cors');
 
 const app = require('fastify')({ logger: true });
 
-const server = require('http').Server(app);
-const io = require('socket.io')(server);
+// const server = require('http').Server(app);
+// const io = require('@guivic/fastify-socket.io')(server);
 
 mongoose.connect('mongodb+srv://asdf:Asdf4dM1n666@cluster0-htu8t.gcp.mongodb.net/test?retryWrites=true&w=majority',{
   useNewUrlParser: true, 
@@ -17,7 +17,7 @@ mongoose.connect('mongodb+srv://asdf:Asdf4dM1n666@cluster0-htu8t.gcp.mongodb.net
 //   next();
 // })
 
-//app.register(cors()); 
+app.use(cors()); 
 
 app.register(require('fastify-static'), {
   root: path.resolve(__dirname, '..', 'uploads', 'resized'),
