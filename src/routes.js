@@ -1,8 +1,8 @@
 const express = require('express');
 const multer = require('multer');
 const uploadConfig = require('./config/upload');
-const { getPosts, createPost } = require('./controllers/PostController');
-const { likePost } = require('./controllers/LikeController');
+const { getPosts, createPost } = require('./controllers/post-controller');
+const { likePost } = require('./controllers/like-controller');
 
 const routes = new express.Router();
 const upload = multer(uploadConfig);
